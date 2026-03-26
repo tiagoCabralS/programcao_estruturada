@@ -1,0 +1,15 @@
+C:\Users\aluno\Documents\GitHub\programcao_estruturada\aula01\exemplo02\exemplo02\bin\Debug\net8.0\exemplo02.exe
+C:\Users\aluno\Documents\GitHub\programcao_estruturada\aula01\exemplo02\exemplo02\bin\Debug\net8.0\exemplo02.deps.json
+C:\Users\aluno\Documents\GitHub\programcao_estruturada\aula01\exemplo02\exemplo02\bin\Debug\net8.0\exemplo02.runtimeconfig.json
+C:\Users\aluno\Documents\GitHub\programcao_estruturada\aula01\exemplo02\exemplo02\bin\Debug\net8.0\exemplo02.dll
+C:\Users\aluno\Documents\GitHub\programcao_estruturada\aula01\exemplo02\exemplo02\bin\Debug\net8.0\exemplo02.pdb
+C:\Users\aluno\Documents\GitHub\programcao_estruturada\aula01\exemplo02\exemplo02\obj\Debug\net8.0\exemplo02.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aluno\Documents\GitHub\programcao_estruturada\aula01\exemplo02\exemplo02\obj\Debug\net8.0\exemplo02.AssemblyInfoInputs.cache
+C:\Users\aluno\Documents\GitHub\programcao_estruturada\aula01\exemplo02\exemplo02\obj\Debug\net8.0\exemplo02.AssemblyInfo.cs
+C:\Users\aluno\Documents\GitHub\programcao_estruturada\aula01\exemplo02\exemplo02\obj\Debug\net8.0\exemplo02.csproj.CoreCompileInputs.cache
+C:\Users\aluno\Documents\GitHub\programcao_estruturada\aula01\exemplo02\exemplo02\obj\Debug\net8.0\exemplo02.sourcelink.json
+C:\Users\aluno\Documents\GitHub\programcao_estruturada\aula01\exemplo02\exemplo02\obj\Debug\net8.0\exemplo02.dll
+C:\Users\aluno\Documents\GitHub\programcao_estruturada\aula01\exemplo02\exemplo02\obj\Debug\net8.0\refint\exemplo02.dll
+C:\Users\aluno\Documents\GitHub\programcao_estruturada\aula01\exemplo02\exemplo02\obj\Debug\net8.0\exemplo02.pdb
+C:\Users\aluno\Documents\GitHub\programcao_estruturada\aula01\exemplo02\exemplo02\obj\Debug\net8.0\exemplo02.genruntimeconfig.cache
+C:\Users\aluno\Documents\GitHub\programcao_estruturada\aula01\exemplo02\exemplo02\obj\Debug\net8.0\ref\exemplo02.dll
