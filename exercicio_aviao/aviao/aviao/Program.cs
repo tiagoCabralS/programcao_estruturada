@@ -13,6 +13,90 @@ namespace ex_aviao
             int fileira, coluna, ocupados, total;
             bool tem_nome;
 
+            bool procurar_passageiro(string nome)
+            {
+                for (int a = 0; a < nomes.GetLength(0); a++)
+                {
+                    for (int b = 0; b < nomes.GetLength(1); b++)
+                    {
+                        if (nomes[a, b] == nome)
+                        {
+                            fileira = a;
+                            coluna = b;
+                            tem_nome = true;
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+
+            int escolher_assento(int fileira, int coluna)
+            {
+                if (aviao[fileira, coluna] != 0)
+                {
+                    return 3;
+                }
+                else
+                {
+                    Console.Write("Digite seu nome: ");
+                    nome = Console.ReadLine();
+                                        
+                    if (procurar_passageiro(nome))
+                    {
+                        return 2;
+                    }
+                    else
+                    {
+                        aviao[fileira, coluna] = 1;
+                        nomes[fileira, coluna] = nome;
+                        return 1;
+                    }
+                }
+            }
+
+            void listagem_ocupacao()
+            {
+                for (int a = 0; a < nomes.GetLength(0); a++)
+                {
+                    Console.WriteLine($"Fileira n. {a + 1}");
+                    for (int b = 0; b < nomes.GetLength(1); b++)
+                    {
+                        if (nomes[a, b] != null)
+                        {
+                            Console.WriteLine($"Posição {letras[b]}: {nomes[a, b]}");
+                        }
+                        Console.WriteLine($"Posição {letras[b]}: vazio");
+                    }
+                }
+            }
+
+            bool lotada()
+            {
+                ocupados = 0;
+                Console.WriteLine("Verificar se lotada ");
+                for (int a = 0; a < nomes.GetLength(0); a++)
+                {
+                    for (int b = 0; b < nomes.GetLength(1); b++)
+                    {
+                        if (nomes[a, b] != null)
+                        {
+                            ocupados++;
+                        }
+                    }
+                }
+                total = nomes.GetLength(0) * nomes.GetLength(1);
+                if (ocupados == total)
+                {
+                    return true;                    
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        
+
             while (true)
             {
                 tem_nome = false;
@@ -33,40 +117,17 @@ namespace ex_aviao
                     Console.WriteLine("Coluna: ");
                     coluna = int.Parse(Console.ReadLine());
 
-
-                    if (aviao[fileira, coluna] != 0)
+                    if (escolher_assento(fileira, coluna) == 1)
+                    {
+                        Console.WriteLine("Assento reservado com sucesso.");
+                    }
+                    else if (escolher_assento(fileira, coluna) == 2)
+                    {
+                        Console.WriteLine($"Nome já cadastrado.");
+                    }
+                    else if (escolher_assento(fileira, coluna) == 3)
                     {
                         Console.WriteLine("Posição ocupada.");
-                    }
-                    else
-                    {
-                        Console.Write("Digite seu nome: ");
-                        nome = Console.ReadLine();
-                        for (int a = 0; a < nomes.GetLength(0); a++)
-                        {
-                            for (int b = 0; b < nomes.GetLength(1); b++)
-                            {
-                                if (nomes[a, b] == nome)
-                                {
-                                    tem_nome = true;
-                                    break;
-                                }
-                                else
-                                {
-                                    tem_nome = false;
-                                }
-                            }
-                        }
-                        if (tem_nome)
-                        {
-                            Console.WriteLine($"Nome já cadastrado.");
-                        }
-                        else
-                        {
-                            aviao[fileira, coluna] = 1;
-                            nomes[fileira, coluna] = nome;
-                            Console.WriteLine("Assento reservado com sucesso.");
-                        }
                     }
                 }
                 else if (opcao == "2")
@@ -76,7 +137,6 @@ namespace ex_aviao
                     nome = Console.ReadLine();
 
                     fileira = coluna = 0;
-
 
                     for (int a = 0; a < nomes.GetLength(0); a++)
                     {
@@ -91,6 +151,7 @@ namespace ex_aviao
                             }
                         }
                     }
+
                     if (tem_nome)
                     {
                         Console.WriteLine($"Nome encontrado na posição [{fileira}, {coluna}]");
@@ -103,35 +164,11 @@ namespace ex_aviao
                 else if (opcao == "3")
                 {
                     Console.WriteLine("Listagem de ocupação: ");
-                    for (int a = 0; a < nomes.GetLength(0); a++)
-                    {
-                        Console.WriteLine($"Fileira n. {a + 1}");
-                        for (int b = 0; b < nomes.GetLength(1); b++)
-                        {
-                            if (nomes[a, b] != null)
-                            {
-                                Console.WriteLine($"Posição {letras[b]}: {nomes[a, b]}");
-                            }
-                            Console.WriteLine($"Posição {letras[b]}: vazio");
-                        }
-                    }
+                    listagem_ocupacao();
                 }
                 else if (opcao == "4")
                 {
-                    ocupados = 0;
-                    Console.WriteLine("Verificar se lotada ");
-                    for (int a = 0; a < nomes.GetLength(0); a++)
-                    {
-                        for (int b = 0; b < nomes.GetLength(1); b++)
-                        {
-                            if (nomes[a, b] != null)
-                            {
-                                ocupados++;
-                            }
-                        }
-                    }
-                    total = nomes.GetLength(0) * nomes.GetLength(1);
-                    if (ocupados == total)
+                    if (lotada())
                     {
                         Console.WriteLine("Todos os assentos estão reservados.");
                         Console.WriteLine("Encerrando o programa. Volte sempre!");
