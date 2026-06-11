@@ -1,13 +1,15 @@
-﻿using System.Numerics;
+// Tiago Santos Cabral da Silva
+using System.Numerics;
+using System.Security.Cryptography;
 
 namespace ex_aviao
 {
     internal class Program
-    {
+    {   
         static void Main(string[] args)
         {
-            int[,] aviao = new int[19, 4];
-            string[,] nomes = new string[19, 4];
+            int[,] aviao = new int[20, 4];
+            string[,] nomes = new string[20, 4];
             string[] letras = ["A", "B", "C", "D"];
             string opcao, nome;
             int fileira, coluna, ocupados, total;
@@ -20,10 +22,7 @@ namespace ex_aviao
                     for (int b = 0; b < nomes.GetLength(1); b++)
                     {
                         if (nomes[a, b] == nome)
-                        {
-                            fileira = a;
-                            coluna = b;
-                            tem_nome = true;
+                        {                            
                             return true;
                         }
                     }
@@ -41,7 +40,7 @@ namespace ex_aviao
                 {
                     Console.Write("Digite seu nome: ");
                     nome = Console.ReadLine();
-                                        
+
                     if (procurar_passageiro(nome))
                     {
                         return 2;
@@ -66,7 +65,11 @@ namespace ex_aviao
                         {
                             Console.WriteLine($"Posição {letras[b]}: {nomes[a, b]}");
                         }
-                        Console.WriteLine($"Posição {letras[b]}: vazio");
+                        else
+                        {
+                            Console.WriteLine($"Posição {letras[b]}: vazio");
+                        }
+                        
                     }
                 }
             }
@@ -88,14 +91,14 @@ namespace ex_aviao
                 total = nomes.GetLength(0) * nomes.GetLength(1);
                 if (ocupados == total)
                 {
-                    return true;                    
+                    return true;
                 }
                 else
                 {
                     return false;
                 }
             }
-        
+
 
             while (true)
             {
@@ -117,18 +120,27 @@ namespace ex_aviao
                     Console.WriteLine("Coluna: ");
                     coluna = int.Parse(Console.ReadLine());
 
-                    if (escolher_assento(fileira, coluna) == 1)
+                    if (fileira > 20 || fileira <= 0 || coluna > 4 || coluna < 0)
                     {
-                        Console.WriteLine("Assento reservado com sucesso.");
+                        Console.WriteLine("Posição inválida.");
                     }
-                    else if (escolher_assento(fileira, coluna) == 2)
+                    else
                     {
-                        Console.WriteLine($"Nome já cadastrado.");
-                    }
-                    else if (escolher_assento(fileira, coluna) == 3)
-                    {
-                        Console.WriteLine("Posição ocupada.");
-                    }
+                        int cadastro = escolher_assento(fileira - 1, coluna - 1);
+
+                        if (cadastro == 1)
+                        {
+                            Console.WriteLine("Assento reservado com sucesso.");
+                        }
+                        else if (cadastro == 2)
+                        {
+                            Console.WriteLine($"Nome já cadastrado.");
+                        }
+                        else if (cadastro == 3)
+                        {
+                            Console.WriteLine("Posição ocupada.");
+                        }
+                    }                    
                 }
                 else if (opcao == "2")
                 {
@@ -154,7 +166,7 @@ namespace ex_aviao
 
                     if (tem_nome)
                     {
-                        Console.WriteLine($"Nome encontrado na posição [{fileira}, {coluna}]");
+                        Console.WriteLine($"Nome encontrado na fileira [{fileira + 1}] e coluna [{coluna + 1}]");
                     }
                     else
                     {
