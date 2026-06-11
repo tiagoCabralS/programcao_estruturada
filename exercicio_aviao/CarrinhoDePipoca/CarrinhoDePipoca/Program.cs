@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+// Tiago Santos Cabral da Silva
+using System.Runtime.InteropServices;
 using System.Transactions;
 
 namespace CarrinhoDePipoca
@@ -13,17 +14,18 @@ namespace CarrinhoDePipoca
 
             void lancarVenda(int num_carrinho, int quant_doce, int quant_salgada)
             {
-                carrinhos[num_carrinho - 1, 0] += quant_doce;
-                carrinhos[num_carrinho - 1, 1] += doce * quant_doce;
-                carrinhos[num_carrinho - 1, 2] += quant_salgada;
-                carrinhos[num_carrinho - 1, 3] += salgada * quant_salgada;
+                num_carrinho = num_carrinho - 1;
+                carrinhos[num_carrinho, 0] += quant_doce;
+                carrinhos[num_carrinho, 1] += doce * quant_doce;
+                carrinhos[num_carrinho, 2] += quant_salgada;
+                carrinhos[num_carrinho, 3] += salgada * quant_salgada;
                 double somar;
-                somar = carrinhos[num_carrinho - 1, 1] + carrinhos[num_carrinho - 1, 3];
-                carrinhos[num_carrinho - 1, 4] += somar;  
-                
+                somar = carrinhos[num_carrinho, 1] + carrinhos[num_carrinho, 3];
+                carrinhos[num_carrinho, 4] += somar;
+
                 if (menor_carrinho == -1)
                 {
-                    menor_carrinho = num_carrinho - 1;
+                    menor_carrinho = num_carrinho;
                 }
             }
 
@@ -50,7 +52,7 @@ namespace CarrinhoDePipoca
                     Console.WriteLine($"|    {n}     |  {qtdoce}  | {valdoce}  |  {qtsalg}  | {valsalg}  | {total}   |");
                 }
             }
-
+            #region funcoes
             void rodape()
             {
                 Console.WriteLine("|-----------+------+----------+------+----------+-----------|");
@@ -70,7 +72,7 @@ namespace CarrinhoDePipoca
                 val_geral_salgF = val_geral_salg.ToString("C");
                 total_geralF = total_geral.ToString("C");
                 Console.WriteLine($"|Total geral|  {qt_geral_doceF}  | {val_geral_doceF}  |  {qt_geral_salgF}  | {val_geral_salgF}  |  {total_geralF}  |");
-                Console.WriteLine("=============================================================");                
+                Console.WriteLine("=============================================================");
             }
 
             void maior()
@@ -116,7 +118,7 @@ namespace CarrinhoDePipoca
                 }
                 return menor_carrinho;
             }
-
+            #endregion
             while (doce > 2)
             {
                 Console.Clear();
@@ -146,7 +148,7 @@ namespace CarrinhoDePipoca
                         qt_salgada = int.Parse(Console.ReadLine());
 
                         lancarVenda(carrinho, qt_doce, qt_salgada);
-                                     
+
                         Console.WriteLine("Vendas registradas com sucesso.");
                         Console.ReadKey();
                         break;
@@ -164,7 +166,7 @@ namespace CarrinhoDePipoca
                         break;
                     case 4:
                         menor_carrinho = menor();
-                        
+
                         if (menor_carrinho == -1)
                         {
                             Console.WriteLine("Ainda não houveram vendas.");
